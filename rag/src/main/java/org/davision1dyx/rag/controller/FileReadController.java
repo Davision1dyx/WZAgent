@@ -1,9 +1,11 @@
-package org.davision1dyx.rag.config;
+package org.davision1dyx.rag.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.davision1dyx.rag.reader.DocumentReaderHandler;
+import org.davision1dyx.rag.splitter.OverlapParagraphTextSplitter;
 import org.davision1dyx.rag.utils.DocumentCleaner;
 import org.springframework.ai.document.Document;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

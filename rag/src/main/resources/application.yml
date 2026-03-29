@@ -1,13 +1,30 @@
-
 spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.88:5555/rag_test
+    password: pgvector
+    username: pgvector
   ai:
+    vectorstore:
+      pgvector:
+        dimensions: 768
+        distance-type: cosine_distance
+        index-type: hnsw
+        max-document-batch-size: 10
+        initialize-schema: true
+        table-name: vector_store
     openai:
+      embedding:
+        options:
+          dimensions: 768
+          model: text-embedding-v3
+        base-url: https://dashscope.aliyuncs.com/compatible-mode/
+        api-key: @api.key@
       chat:
         api-key: @api.key@
         options:
           max-tokens: 4096
           temperature: 0.7
-          model:
+          model: GPT-5.4 mini
       api-key: @api.key@
 server:
   port: 9994

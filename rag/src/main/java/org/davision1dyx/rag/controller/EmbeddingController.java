@@ -2,8 +2,9 @@ package org.davision1dyx.rag.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.davision1dyx.rag.reader.DocumentReaderHandler;
+import org.davision1dyx.rag.splitter.OverlapParagraphTextSplitter;
+import org.davision1dyx.rag.utils.DocumentCleaner;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.embedding.BatchingStrategy;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingOptions;
 import org.springframework.ai.embedding.TokenCountBatchingStrategy;
@@ -44,7 +45,15 @@ public class EmbeddingController {
 
     @GetMapping("embedStore")
     public void embedStore() {
-        List<Document> documents = readerHandler.handle(new File("/Users/dyxfight/Document/agentLearning/RAG材料/Java八股文介绍.md"));
-        vectorStore.add(documents);
+        List<Document> documents = readerHandler.handle(new File("/Users/dyxfight/Document/Kubernetes in Action中文版.pdf"));
+        documents = documents.subList(19, documents.size() - 1);
+        documents = DocumentCleaner.cleanDocuments(documents);
+        OverlapParagraphTextSplitter overlapParagraphTextSplitter = new OverlapParagraphTextSplitter(1024, 50);
+        List<Document> splited = overlapParagraphTextSplitter.split(documents);
+
+        for (int i = 0; i < splited.size(); i += 9) {
+            List<Document> batches = splited.subList(i, Math.min(i + 9, splited.size()));
+            vectorStore.add(batches);
+        }
     }
 }

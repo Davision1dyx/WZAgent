@@ -30,6 +30,7 @@ public class QuestionRewriteOptimizer {
 
     /**
      * 问题富化：根据对话历史上下文，丰富用户原始问题。
+     * query compression
      */
     public String enrich(String history, String question) {
         String prompt = """
@@ -129,6 +130,7 @@ public class QuestionRewriteOptimizer {
 
     /**
      * 问题多样化：将用户问题中名词进行同义多样化，增加向量检索命中率
+     * query expander
      */
     public List<String> diversify(String question) {
         String prompt = """

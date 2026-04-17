@@ -1,0 +1,25 @@
+server:
+  port: 9997
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+spring:
+  ai:
+    mcp:
+      server:
+        enabled: true
+        name: mcp-server-stream
+        version: 1.0.0
+        type: sync
+        protocol: streamable
+        streamable-http:
+          mcp-endpoint: /mcp
+          keep-alive-interval: 30s
+        instructions: "这个服务是用来提供景点推荐的。"
+        prompt-change-notification: true
+        resource-change-notification: true
+        tool-change-notification: true
+        annotation-scanner:
+          enabled: true

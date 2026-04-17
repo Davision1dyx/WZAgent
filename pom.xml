@@ -10,6 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>rag</module>
+        <module>agent</module>
+        <module>spring-ai-demo</module>
+        <module>mcp</module>
     </modules>
 
     <parent>
@@ -25,8 +28,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fastjson.version>2.0.43</fastjson.version>
         <spring.ai.alibaba.version>1.1.2.0</spring.ai.alibaba.version>
-        <api.key>修改自己的</api.key>
+        <spring.ai.version>1.1.0</spring.ai.version>
+        <open.api.key>your api key</open.api.key>
+        <api.key>your api key</api.key>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring.ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <resources>

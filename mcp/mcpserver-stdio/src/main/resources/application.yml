@@ -1,0 +1,16 @@
+spring:
+  main:
+    banner-mode: off
+    web-application-type: none
+  ai:
+    mcp:
+      server:
+        stdio: true
+        name: mcp-server
+        version: 1.0.0
+        type: sync
+        enabled: true
+# 关闭所有日志打印，以防干扰stdio
+logging:
+  level:
+    root: OFF

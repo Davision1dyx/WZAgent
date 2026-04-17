@@ -1,0 +1,35 @@
+server:
+  port: 9996
+spring:
+  ai:
+    anthropic:
+      base-url: #your base url
+      api-key: @dashscope.api.key@
+      chat:
+        options:
+          model: code-generation-latest
+          temperature: 0.7
+    mcp:
+      client:
+        enabled: true
+        name: mcp-client
+        version: 1.0.0
+        type: sync
+#        stdio:
+#          connections:
+#            place-stdio:
+#              command: "C:\\Program Files\\Java\\jdk-21.0.7\\bin\\java"
+#              args:
+#                - -jar
+#                - "D:\\ProgramSelf\\WZAgent\\mcp\\mcpserver-stdio\\target\\mcpserver-stdio-1.0.0-SNAPSHOT.jar"
+#          servers-configuration: classpath:/mcp-servers.json
+        sse:
+          connections:
+            mcp-server-sse:
+              url: http://localhost:9998/
+              sse-endpoint: sse
+        streamable-http:
+          connections:
+            mcp-server-stream:
+              url: http://localhost:9997/
+              endpoint: mcp

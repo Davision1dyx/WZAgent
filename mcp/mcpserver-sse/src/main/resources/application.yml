@@ -1,0 +1,23 @@
+server:
+  port: 9998
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+    #context-path: /process  禁止使用contextPath，防止导致找不到 mcp的endpoint
+spring:
+  ai:
+    mcp:
+      server:
+        enabled: true
+        name: mcp-server-sse
+        version: 1.0.0
+        type: sync
+        sse-endpoint: /sse # client通过该endpoint 订阅server的sse消息
+        sse-message-endpoint: /mcp/message # client通过该endpoint 向server发送消息
+        capabilities:
+          tool: true
+          resource: false
+          completion: false
+          prompt: false
